@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-const args = process.argv.slice(2);
+const names = process.argv.slice(2);
 // global variable for longest string in input array
 let longest = 0;
-  for (let k = 0; k < args.length; k++) {
-    if (args[k].length > longest) {
-      longest = args[k].length;
+  for (let k = 0; k < names.length; k++) {
+    if (names[k].length > longest) {
+      longest = names[k].length;
     } 
   };
 
@@ -43,15 +43,15 @@ function boxIt(arr) {
 
   for (let m = 0; m < arr.length; m++) {
     if (m !== arr.length - 1) {
-      string += `${drawBarsAround(args[m])}\n${drawMiddleBorder(longest)}\n`;
+      string += `${drawBarsAround(names[m])}\n${drawMiddleBorder(longest)}\n`;
     } else {
-      string += `${drawBarsAround(args[m])}\n`;
+      string += `${drawBarsAround(names[m])}\n`;
     }
   }
   string += drawBottomBorder(longest);
   console.log(string);
 };
-boxIt(args);
+boxIt(names);
 
 
 
