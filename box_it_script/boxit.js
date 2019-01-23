@@ -1,79 +1,71 @@
 #!/usr/bin/env node
-
 const args = process.argv.slice(2);
-const stringArray = [];
-
-for (let j = 0; j < args.length; j += 1) {
-  stringArray.push(args[j]);
-}
-// console.log(stringArray);
-
 // global variable for longest string in input array
-let long = 0;
-  
-  for (let k = 0; k < stringArray.length; k += 1) {
-    if (stringArray[k].length > long) {
-      long = stringArray[k].length;
+let longest = 0;
+  for (let k = 0; k < args.length; k++) {
+    if (args[k].length > longest) {
+      longest = args[k].length;
     } 
-  }
-const longest = long;
-
+  };
 
 function drawLine(num) {
   let string = '';
-  for (let i = 0; i < num; i += 1) {
-    string = string + '\u2500';
+  for (let i = 0; i < num; i ++) {
+    string += '\u2500';
   }
   return string;
 };
-//console.log(drawLine(5));
-
 
 function drawTopBorder(num) {
-  string = '\u250C' + drawLine(num) + '\u2510';
-  return string;
+  return `\u250C${drawLine(num)}\u2510`;
 };
-//console.log(drawTopBorder(5));
-
 
 function drawMiddleBorder(num) {
-  string = '\u251C' + drawLine(num) + '\u2524';
-  return string;
+  return `\u251C${drawLine(num)}\u2524`;
 };
-// console.log(drawMiddleBorder(5));
-
 
 function drawBottomBorder(num) {
-  string = '\u2514' + drawLine(num) + '\u2518';
-  return string;
+  return `\u2514${drawLine(num)}\u2518`
 };
-// console.log(drawBottomBorder(5));
 
-
-function drawBarsAround(barString) {
+function drawBarsAround(name) {
   
     let padding = '';
-    for (let l = 0; l < (longest - barString.length); l += 1) {
-      padding = padding + ' ';
+    for (let l = 0; l < (longest - name.length); l++) {
+      padding += ' ';
     }
-    string = '\u2502' + barString + padding + '\u2502';
-    return string;
-}
-// console.log(drawBarsAround("HERPA DERPA"));
-
+    return `\u2502${name}${padding}\u2502`
+};
 
 function boxIt(arr) {
   
-  let string = drawTopBorder(longest) + "\n";
+  let string = `${drawTopBorder(longest)}\n`;
 
-  for (let m = 0; m < arr.length; m += 1) {
+  for (let m = 0; m < arr.length; m++) {
     if (m !== arr.length - 1) {
-      string = string + drawBarsAround(stringArray[m]) + "\n" + drawMiddleBorder(longest) + "\n";
+      string += `${drawBarsAround(args[m])}\n${drawMiddleBorder(longest)}\n`;
     } else {
-      string = string + drawBarsAround(stringArray[m]) + "\n";
+      string += `${drawBarsAround(args[m])}\n`;
     }
   }
-  string = string + drawBottomBorder(longest);
+  string += drawBottomBorder(longest);
   console.log(string);
-}
-boxIt(stringArray);
+};
+boxIt(args);
+
+
+
+// other way to do boxIt()
+
+// for (let index = 0; index < arr.length; index++) {
+// string += m !== arr.length - 1 ? conv_str(true, m) :  conv_str(false, m); }
+
+// function conv_str(cnd, m) {
+//   return cnd ? `${drawBarsAround(args[m])}\n${drawMiddleBorder(longest)}\n` : `${drawBarsAround(args[m])}\n`
+// }
+
+
+
+/*
+let csvArray = [["names", "house"], ["Jon Snow", "Stark"],]
+*/
