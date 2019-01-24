@@ -10,7 +10,7 @@ let longest = 0;
 
 function drawLine(num) {
   let string = '';
-  for (let i = 0; i < num; i ++) {
+  for (let i = 0; i < num; i++) {
     string += '\u2500';
   }
   return string;
@@ -49,9 +49,9 @@ function boxIt(arr) {
     }
   }
   string += drawBottomBorder(longest);
-  console.log(string);
+  return string;
 };
-boxIt(names);
+console.log(boxIt(names));
 
 
 
