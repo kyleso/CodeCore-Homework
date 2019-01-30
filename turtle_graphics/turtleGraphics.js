@@ -2,7 +2,7 @@ class Turtle {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.moves = [[x, y]];
+    this.moves = [[x, y]]; // array of all points walked along by the turtle
     this.direction = 0;
   }
   forward(steps) {
@@ -56,25 +56,29 @@ class Turtle {
     return this.moves;
   }
   print() {
-    const xValues = this.moves.map(move => move[0]);
+
+    const coordinates = this.allPoints();
+
+    const xValues = coordinates.map(coordinate => coordinate[0]);
     const xMax = Math.max(...xValues);
    
-    const yValues = this.moves.map(move => move[1]);
+    const yValues = coordinates.map(coordinate => coordinate[1]);
     const yMax = Math.max(...yValues);
     
-    let moveStrings = [];
-    for (let m = 0; m < this.moves.length; m++) {
-      moveStrings.push(this.moves[m].toString())
+    let coordinatesStrings = [];
+    for (let m = 0; m < coordinates.length; m++) {
+      coordinatesStrings.push(coordinates[m].toString())
     }
       
     let result = '';
+    const buffer = 1; // 1 line buffer around outside so grid looks better
 
-    for (let i = 0; i <= yMax + 1; i++) {
-      for (let j = 0; j <= xMax + 1; j++) {
-        if (moveStrings.includes(`${j},${i}`)) {
-          result = result + '\u2588';
+    for (let i = 0; i <= yMax + buffer; i++) {
+      for (let j = 0; j <= xMax + buffer; j++) {
+        if (coordinatesStrings.includes(`${j},${i}`)) {
+          result = result + '\u25A0';
         } else {
-          result = result + '\u25a1';
+          result = result + '\u25A1';
         }
       }
       result += '\n'
@@ -98,6 +102,8 @@ const flash = new Turtle(0, 4)
 .left()
 .forward(3)
 .print();
+
+
 
 
 
