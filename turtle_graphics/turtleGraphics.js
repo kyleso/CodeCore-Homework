@@ -37,77 +37,59 @@ class Turtle {
     return this;
   }
   right() {
-    if (this.direction === 3) {
-      this.direction = 0;
-    } else {
-      this.direction += 1;
-    }
+    this.direction === 3 ? (this.direction = 0) : (this.direction += 1);
     return this;
   }
   left() {
-    if (this.direction === 0) {
-      this.direction = 3;
-    } else {
-      this.direction -= 1;
-    }
+    this.direction === 0 ? (this.direction = 3) : (this.direction -= 1);
     return this;
   }
   allPoints() {
     return this.moves;
   }
   print() {
-
     const coordinates = this.allPoints();
 
-    const xValues = coordinates.map(coordinate => coordinate[0]);
+    const xValues = coordinates.map(a => a[0]);
     const xMax = Math.max(...xValues);
-   
-    const yValues = coordinates.map(coordinate => coordinate[1]);
+
+    const yValues = coordinates.map(b => b[1]);
     const yMax = Math.max(...yValues);
-    
-    let coordinatesStrings = [];
-    for (let m = 0; m < coordinates.length; m++) {
-      coordinatesStrings.push(coordinates[m].toString())
-    }
-      
-    let result = '';
+
+    const coordinatesStrings = coordinates.map(c => c.toString());
+
+    let result = "";
     const buffer = 1; // 1 line buffer around outside so grid looks better
 
     for (let i = 0; i <= yMax + buffer; i++) {
       for (let j = 0; j <= xMax + buffer; j++) {
         if (coordinatesStrings.includes(`${j},${i}`)) {
-          result = result + '\u25A0';
+          result += "\u25A0";
         } else {
-          result = result + '\u25A1';
+          result += "\u25A1";
         }
       }
-      result += '\n'
+      result += "\n";
     }
     console.log(result);
   }
 }
 
 const flash = new Turtle(0, 4)
-.forward(3)
-.left()
-.forward(3)
-.right()
-.forward(5)
-.right()
-.forward(8)
-.right()
-.forward(5)
-.right()
-.forward(3)
-.left()
-.forward(3)
-.print();
-
-
-
-
-
-
+  .forward(3)
+  .left()
+  .forward(3)
+  .right()
+  .forward(5)
+  .right()
+  .forward(8)
+  .right()
+  .forward(5)
+  .right()
+  .forward(3)
+  .left()
+  .forward(3)
+  .print();
 
 // code to interpolate values between two points
 
