@@ -36,7 +36,7 @@ const start = answer => {
     });
 
     if (todos[0] === undefined) {
-      console.log(`List is empty`);
+      console.log(`\nList is empty`);
     } else {
       console.log("\n" + result);
     }
