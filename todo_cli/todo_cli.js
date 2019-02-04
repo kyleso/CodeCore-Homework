@@ -12,16 +12,13 @@ const todos = []; // array of objects
 const welcome = `
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃   Welcome to Todo CLI!                                          ┃
-┃                                                                 ┃
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-┃                                                                 ┃
 ┃   (v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit   ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 `;
 
 const menu = `
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                                 ┃
 ┃   (v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit   ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 `;
@@ -36,18 +33,18 @@ const start = answer => {
     });
 
     if (todos[0] === undefined) {
-      console.log(`\nList is empty`);
+      console.log(`\nList is empty!`);
     } else {
       console.log("\n" + result);
     }
-    
+
     console.log(menu);
     rl.question(`What would you like to do?\n>> `, start);
   };
 
   // Add new Todo
   const add = () => {
-    rl.question(`Add a to-do to your list:\n>> `, input => {
+    rl.question(`\nAdd a to-do to your list:\n>> `, input => {
       todos.push({ checkbox: "[ ]", todo: input });
 
       console.log(menu);
@@ -89,7 +86,7 @@ const start = answer => {
   //   answer[0] !== "c" ||
   //   answer[0] !== "d" ||
   //   answer[0] !== "q" ||
-  //   typeof parseInt(answer[1]) !== "number"
+  //   parseInt(answer[1]) < 0"
   // ) {
   //   console.log(`Invalid input, please try again`);
   //   console.log(menu);
@@ -103,16 +100,18 @@ const start = answer => {
     case answer === "n":
       add();
       break;
-    case answer[0] == "c":
+    case answer[0] == "c" && parseInt(answer[1]) >= 0:
       complete(answer);
       break;
-    case answer[0] === "d":
+    case answer[0] === "d" && parseInt(answer[1]) >= 0:
       remove(answer);
       break;
     case answer === "q":
       quit();
+      break;
     default:
-      //do nothing
+      console.log(`\nInvalid input, please try again!\n`)
+      rl.question(`What would you like to do?\n>> `, start);
       break;
   }
 };
