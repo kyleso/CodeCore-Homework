@@ -1,14 +1,10 @@
 const readline = require("readline");
-
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
 const todos = []; // array of objects
-
-// [{checkkbox: `[ ]`, todo: 'Buy groceries'}, {checkbox: `[✓]`, todo: `Call doctor`}]
-
 const welcome = `
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃   Welcome to Todo CLI!                                          ┃
@@ -16,7 +12,6 @@ const welcome = `
 ┃   (v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit   ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 `;
-
 const menu = `
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃   (v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit   ┃
@@ -77,22 +72,6 @@ const start = answer => {
     rl.close();
   };
 
-  // Validating user input
-
-  // if (
-  //   answer.length > 2 ||
-  //   answer[0] !== "v" ||
-  //   answer[0] !== "n" ||
-  //   answer[0] !== "c" ||
-  //   answer[0] !== "d" ||
-  //   answer[0] !== "q" ||
-  //   parseInt(answer[1]) < 0"
-  // ) {
-  //   console.log(`Invalid input, please try again`);
-  //   console.log(menu);
-  //   rl.question(`What would you like to do?\n>> `, start);
-  // }
-
   switch (true) {
     case answer === "v":
       view();
@@ -110,7 +89,7 @@ const start = answer => {
       quit();
       break;
     default:
-      console.log(`\nInvalid input, please try again!\n`)
+      console.log(`\nInvalid input, please try again!\n`);
       rl.question(`What would you like to do?\n>> `, start);
       break;
   }
