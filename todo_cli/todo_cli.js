@@ -5,10 +5,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-const todos = [
-  { checkbox: `[ ]`, todo: "Buy groceries" },
-  { checkbox: `[✓]`, todo: `Call doctor` }
-]; // array of objects
+const todos = []; // array of objects
 
 // [{checkkbox: `[ ]`, todo: 'Buy groceries'}, {checkbox: `[✓]`, todo: `Call doctor`}]
 
@@ -37,7 +34,13 @@ const start = answer => {
     todos.forEach((element, index) => {
       result += `• ${index} ${element.checkbox} ${element.todo}\n`;
     });
-    console.log("\n" + result);
+
+    if (todos[0] === undefined) {
+      console.log(`List is empty`);
+    } else {
+      console.log("\n" + result);
+    }
+    
     console.log(menu);
     rl.question(`What would you like to do?\n>> `, start);
   };
