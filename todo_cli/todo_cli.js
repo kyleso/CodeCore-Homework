@@ -19,7 +19,7 @@ const menu = `
 `;
 console.log(welcome);
 
-const start = answer => {
+const main = answer => {
   // View Todos
   const view = () => {
     let result = "";
@@ -32,9 +32,8 @@ const start = answer => {
     } else {
       console.log("\n" + result);
     }
-
     console.log(menu);
-    rl.question(`What would you like to do?\n>> `, start);
+    start();
   };
 
   // Add new Todo
@@ -43,7 +42,7 @@ const start = answer => {
       todos.push({ checkbox: "[ ]", todo: input });
 
       console.log(menu);
-      rl.question(`What would you like to do?\n>> `, start);
+      start();
     });
   };
 
@@ -54,7 +53,7 @@ const start = answer => {
 
     console.log(`\nCompleted "${todos[completeIndex].todo}"\n`);
     console.log(menu);
-    rl.question(`What would you like to do?\n>> `, start);
+    start();
   };
 
   // Delete a todo
@@ -63,7 +62,7 @@ const start = answer => {
     console.log(`\nDeleted "${todos[deleteIndex].todo}"\n`);
     todos.splice(deleteIndex, 1);
     console.log(menu);
-    rl.question(`What would you like to do?\n>> `, start);
+    start();
   };
 
   // Say goodbye and quit the application
@@ -90,8 +89,9 @@ const start = answer => {
       break;
     default:
       console.log(`\nInvalid input, please try again!\n`);
-      rl.question(`What would you like to do?\n>> `, start);
+      start();
       break;
   }
 };
-rl.question(`What would you like to do?\n>> `, start);
+const start = () => rl.question(`What would you like to do?\n>> `, main);
+start();
