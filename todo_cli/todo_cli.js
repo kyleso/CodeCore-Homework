@@ -4,6 +4,7 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+const args = process.argv.slice(2);
 
 const welcome = `
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -19,10 +20,12 @@ const menu = `
 `;
 console.log(welcome);
 
-const fileData = JSON.parse(
-  fs.readFileSync(`./${process.argv.slice(2).toString()}`, "utf8")
-);
-const todos = [].concat(fileData);
+let fileData = "";
+if (args.length) {
+  fileData = JSON.parse(fs.readFileSync(`./${args[0].toString()}`, "utf8"));
+}
+
+const todos = fileData.length ? fileData : [];
 
 const main = answer => {
   // View Todos
@@ -72,6 +75,8 @@ const main = answer => {
     start();
   };
 
+  const save = path => {};
+
   // Say goodbye and quit the application
   const quit = () => {
     console.log(`\nSee you soon! 😄\n`);
@@ -97,7 +102,6 @@ const main = answer => {
     default:
       console.log(`\nInvalid input, please try again!\n`);
       start();
-      break;
   }
 };
 const start = () => rl.question(`What would you like to do?\n>> `, main);
