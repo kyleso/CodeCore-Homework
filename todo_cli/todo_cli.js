@@ -1,32 +1,40 @@
+const fs = require("fs");
 const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-const todos = []; // array of objects
 const welcome = `
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃   Welcome to Todo CLI!                                          ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-┃   (v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit   ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃   Welcome to Todo CLI!                                                     ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃   (v) View • (n) New • (cX) Complete • (dX) Delete • (s) Save • (q) Quit   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 `;
 const menu = `
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃   (v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit   ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃   (v) View • (n) New • (cX) Complete • (dX) Delete • (s) Save • (q) Quit   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 `;
 console.log(welcome);
+
+const fileData = JSON.parse(
+  fs.readFileSync(`./${process.argv.slice(2).toString()}`, "utf8")
+);
+const todos = [].concat(fileData);
 
 const main = answer => {
   // View Todos
   const view = () => {
     let result = "";
     todos.forEach((element, index) => {
-      result += `• ${index} ${element.checkbox} ${element.todo}\n`;
+      if (element.completed === true) {
+        result += `• ${index} [✓] ${element.title}\n`;
+      } else {
+        result += `• ${index} [ ] ${element.title}\n`;
+      }
     });
-
     if (todos[0] === undefined) {
       console.log(`\nList is empty!`);
     } else {
@@ -39,8 +47,7 @@ const main = answer => {
   // Add new Todo
   const add = () => {
     rl.question(`\nAdd a to-do to your list:\n>> `, input => {
-      todos.push({ checkbox: "[ ]", todo: input });
-
+      todos.push({ completed: false, title: input });
       console.log(menu);
       start();
     });
@@ -49,9 +56,9 @@ const main = answer => {
   // Complete a todo by checking it off
   const complete = answer => {
     completeIndex = parseInt(answer[1]);
-    todos[completeIndex].checkbox = `[✓]`;
+    todos[completeIndex].completed = true;
 
-    console.log(`\nCompleted "${todos[completeIndex].todo}"\n`);
+    console.log(`\nCompleted "${todos[completeIndex].title}"\n`);
     console.log(menu);
     start();
   };
@@ -59,7 +66,7 @@ const main = answer => {
   // Delete a todo
   const remove = answer => {
     deleteIndex = parseInt(answer[1]);
-    console.log(`\nDeleted "${todos[deleteIndex].todo}"\n`);
+    console.log(`\nDeleted "${todos[deleteIndex].title}"\n`);
     todos.splice(deleteIndex, 1);
     console.log(menu);
     start();
