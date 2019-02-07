@@ -75,7 +75,23 @@ const main = answer => {
     start();
   };
 
-  const save = path => {};
+  const save = () => {
+    let givenPath = args[1] ? `(${args[1].toString()})` : '';
+    rl.question(
+      `\nWhere would you like to save your to-do list? ${givenPath}\n>> `,
+      path => {
+        if (path === "") {
+          path = args[1].toString();
+        }
+        fs.writeFile(path, JSON.stringify(todos), "utf8", err => {
+          if (err) throw err;
+          console.log(`\nList saved to "${path}"\n`);
+          console.log(menu);
+          start();
+        });
+      }
+    );
+  };
 
   // Say goodbye and quit the application
   const quit = () => {
@@ -95,6 +111,9 @@ const main = answer => {
       break;
     case answer[0] === "d" && parseInt(answer[1]) >= 0:
       remove(answer);
+      break;
+    case answer === "s":
+      save();
       break;
     case answer === "q":
       quit();
