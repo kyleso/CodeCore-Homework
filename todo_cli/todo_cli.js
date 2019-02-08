@@ -49,7 +49,7 @@ const main = answer => {
 
   // Add new Todo
   const add = () => {
-    rl.question(`\nAdd a to-do to your list:\n>> `, input => {
+    rl.question(`\nAdd a to-do to your list:\n> `, input => {
       todos.push({ completed: false, title: input });
       console.log(menu);
       start();
@@ -78,7 +78,7 @@ const main = answer => {
   const save = () => {
     let givenPath = args[1] ? `(${args[1].toString()})` : '';
     rl.question(
-      `\nWhere would you like to save your to-do list? ${givenPath}\n>> `,
+      `\nWhere would you like to save your to-do list? ${givenPath}\n> `,
       path => {
         if (path === "") {
           path = args[1].toString();
@@ -123,5 +123,5 @@ const main = answer => {
       start();
   }
 };
-const start = () => rl.question(`What would you like to do?\n>> `, main);
+const start = () => rl.question(`What would you like to do?\n> `, main);
 start();
