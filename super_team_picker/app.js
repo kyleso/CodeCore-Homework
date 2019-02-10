@@ -13,6 +13,8 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
+const cohortsRouter = require('./routes/cohortsRouter');
+app.use('/cohorts', cohortsRouter);
 
 const PORT = 4001;
 const HOST = 'localhost';
