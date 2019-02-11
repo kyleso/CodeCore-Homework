@@ -1,11 +1,16 @@
 
 <%- include('../partials/header') %>
-<h1><%= cohort.name %></h1>
-<p><%= cohort.members %></p>
-<p><%= new Date(cohort.createAt).toLocaleString() %></p>
-<a class="btn btn-success" href="/cohorts/<%= cohort.id %>/edit">Edit</a>
-<form method="POST" action="/cohorts/<%= cohort.id %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" class="btn btn-danger" value="Delete">
-</form>
+<div class="post-cards">
+  <div class="card mb-4">
+    <div class="card-body">
+      <h1><%= cohort.name %></h1>
+        <p><%= cohort.members %></p>
+        <a class="btn btn-success" role="button" href="/cohorts/<%= cohort.id %>/edit">Edit</a>
+        <form method="POST" action="/cohorts/<%= cohort.id %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+    </div>
+  </div>
+</div>
 <%- include('../partials/footer') %>

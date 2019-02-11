@@ -3,10 +3,10 @@
 <% for (let cohort of cohorts) { %>
     <div class="card mb-4">
       <div class="card-body">
-        <img class="card-img-top" src="<%= cohort.imageURL %>"><h5><%= cohort.name %></h5>
+        <img class="small-image" src="<%= cohort.imageURL %>"><h3><%= cohort.name %></h3>
         <p class="card-text"><%= cohort.members %></p>
         <a class="btn btn-primary" href="/cohorts/<%= cohort.id %>" role="button">Show Cohort</a> 
-    </div>
+      </div>
     </div>
 </div>
 <% } %>
