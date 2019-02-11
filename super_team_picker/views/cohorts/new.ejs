@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+<form action="/cohorts" method="POST">
+  <h4>Logo Url</h4>
+    <input type="text" name="imageURL" class="form-control" placeholder="e.g. https://www.example.com/some.png">
+  <h4>Name</h4>
+      <input type="text" name="name" class="form-control" placeholder="cohort name...">
+  <h4>Members</h4>
+      <textarea class="form-control" name="members" placeholder="names of members..."></textarea>
+    <input type="submit" class="btn btn-outline-primary" value="Submit">
+</form>
+<%- include('../partials/footer') %>
