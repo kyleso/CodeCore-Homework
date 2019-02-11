@@ -31,7 +31,43 @@ router.get('/:id', (req, res) => {
 		.where('id', id)
 		.first()
 		.then(cohort => {
-			res.render('cohorts/show', { cohort: cohort });
+      if ( cohort ) {
+        res.render('cohorts/show', { cohort: cohort });
+      } else {
+        res.redirect('/cohorts')
+      }
+		});
+});
+
+router.delete('/:id', (req, res) => {
+	knex('cohorts')
+		.where('id', req.params.id)
+		.del()
+		.then(() => {
+			res.redirect('/cohorts');
+		});
+});
+
+router.get('/:id/edit', (req, res) => {
+	knex('cohorts')
+		.where('id', req.params.id)
+		.first()
+		.then(cohort => {
+			res.render('cohorts/edit', { cohort: cohort });
+		});
+});
+
+router.patch('/:id', (req, res) => {
+	const updatedCohort = {
+    imageURL: req.body.imageURL,
+    name: req.body.name,
+    members: req.body.members
+	};
+	knex('cohorts')
+		.where('id', req.params.id)
+		.update(updatedCohort)
+		.then(() => {
+			res.redirect(`/cohorts/${req.params.id}`);
 		});
 });
 

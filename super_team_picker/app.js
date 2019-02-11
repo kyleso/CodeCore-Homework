@@ -19,12 +19,6 @@ app.use(
 		}
 	}),
 );
-app.use((request, response, next) => {
-  const username = request.cookies.username;
-  response.locals.username = username || '';
-  next();
-});
-
 
 app.get('/', (req, res) => {
   res.render('home')
