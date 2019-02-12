@@ -11,6 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 app.use(
 	methodOverride((req, res) => {
 		if (req.body && req.body._method) {

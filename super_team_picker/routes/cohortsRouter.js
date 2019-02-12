@@ -71,4 +71,9 @@ router.patch('/:id', (req, res) => {
 		});
 });
 
+router.get('/:id', (req, res) => {
+	const params = req.query
+	console.log(params); 
+})
+
 module.exports = router;
