@@ -27,8 +27,8 @@ router.post("/", (req, res) => {
 
 router.get('/:id', (req, res) => {
 	const id = req.params.id;
-	const formData = req.query
-	
+	const formData = req.query;
+	console.log(formData);
 	res.locals.formData = formData;
 
 	knex('cohorts')
