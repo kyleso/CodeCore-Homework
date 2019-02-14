@@ -27,6 +27,10 @@ router.post("/", (req, res) => {
 
 router.get('/:id', (req, res) => {
 	const id = req.params.id;
+	const formData = req.query
+	
+	res.locals.formData = formData;
+
 	knex('cohorts')
 		.where('id', id)
 		.first()
@@ -71,9 +75,20 @@ router.patch('/:id', (req, res) => {
 		});
 });
 
-router.get('/:id', (req, res) => {
-	const params = req.query
-	console.log(params); 
-})
+// router.get('/:id', (req, res) => {
+	// const formData = req.query
+	// console.log(formData)
+	// const pickMethod = formData.pickMethod;
+	// const quantity = formData.quantity;
+
+	// res.locals.formData = formData;
+
+	// if (pickMethod && quantity) {
+	// 	res.render('cohorts/show', {
+	// 		pickMethod: pickMethod,
+	// 		quantity: quantity
+	// 	})
+	// }
+// })
 
 module.exports = router;

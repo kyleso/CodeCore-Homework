@@ -47,3 +47,18 @@
 .form-spacing .btn {
   margin: 1em;
 }
+
+.nav-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav .navbar-nav li a{
+  color: #007BFF !important;
+}
+
+nav .navbar-brand {
+  color: #007BFF !important;
+}
+
