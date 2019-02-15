@@ -17,13 +17,14 @@
           <div class="form-spacing">
             <h4>Method</h4>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="pickMethod" id="teamCount" value="value" >
+                <input class="form-check-input" type="radio" name="pickMethod" id="teamCount" value="teamCount" <% if (formData.pickMethod == "teamCount"){ %> checked="checked" <% } %> >
+                <input type="hidden" name="members" value="<%= cohort.members %>">
                 <label class="form-check-label" for="teamCount">
                   Team Count
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="pickMethod" id="numberPerTeam" value="value"> >
+                <input class="form-check-input" type="radio" name="pickMethod" id="numberPerTeam" value="numberPerTeam" <% if (formData.pickMethod == "numberPerTeam"){ %> checked="checked" <% } %> >
                   <label class="form-check-label" for="numberPerTeam">
                     Number Per Team
                   </label>
@@ -47,11 +48,10 @@
             </tr>
           </thead>
           <tbody>
-            <% const memberArray = cohort.members.split(", ")
-              for (let i = 0; i < memberArray.length; i++) { %>
+            <% for (let i = 0; i < randoArr.length; i++) { %>
               <tr>  
                 <th scope="row"> <%= i + 1 %> </th>
-                <td> <%= memberArray[i] %> </td>
+                <td> <%= randoArr[i].join(", ") %> </td>
               </tr>  
               <% }
             %>

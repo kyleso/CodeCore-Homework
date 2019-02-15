@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const knex = require("../db/client");
+const randomizer = require("../modules/randomizer.js")
 
 router.get("/", (req, res) => {
   knex("cohorts")
@@ -28,15 +29,17 @@ router.post("/", (req, res) => {
 router.get('/:id', (req, res) => {
 	const id = req.params.id;
 	const formData = req.query;
-	console.log(formData);
-	res.locals.formData = formData;
-
+	
+	let randoArr;
+	if (Object.keys(formData).length > 0) {
+		randoArr = randomizer(formData.pickMethod, formData.quantity, formData.members)
+	}
 	knex('cohorts')
 		.where('id', id)
 		.first()
 		.then(cohort => {
       if ( cohort ) {
-        res.render('cohorts/show', { cohort: cohort });
+        res.render('cohorts/show', { cohort: cohort, randoArr: randoArr, formData: formData });
       } else {
         res.redirect('/cohorts')
       }
