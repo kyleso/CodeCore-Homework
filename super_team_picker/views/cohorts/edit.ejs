@@ -4,7 +4,7 @@
   <form action="/cohorts/<%= cohort.id %>" method="POST">
     <input type="hidden" name="_method" value="PATCH">    
     <h4>Logo Url</h4>
-      <input type="text" name="imageURL" class="form-control" value="<%= cohort.imageURL %>" >
+      <input type="url" name="imageURL" class="form-control" value="<%= cohort.imageURL %>" >
     <h4>Name</h4>
       <input type="text" name="name" class="form-control" value="<%= cohort.name %>" >
     <h4>Members</h4>
