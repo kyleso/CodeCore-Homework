@@ -2,7 +2,6 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override')
 
 app.set('view engine', 'ejs');
@@ -10,7 +9,6 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 app.use(
 	methodOverride((req, res) => {

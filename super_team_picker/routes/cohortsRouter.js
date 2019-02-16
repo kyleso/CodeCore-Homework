@@ -78,20 +78,4 @@ router.patch('/:id', (req, res) => {
 		});
 });
 
-// router.get('/:id', (req, res) => {
-	// const formData = req.query
-	// console.log(formData)
-	// const pickMethod = formData.pickMethod;
-	// const quantity = formData.quantity;
-
-	// res.locals.formData = formData;
-
-	// if (pickMethod && quantity) {
-	// 	res.render('cohorts/show', {
-	// 		pickMethod: pickMethod,
-	// 		quantity: quantity
-	// 	})
-	// }
-// })
-
 module.exports = router;
