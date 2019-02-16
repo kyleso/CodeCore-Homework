@@ -1,8 +1,7 @@
-const randomizer = (pick, quan, membs) => {
-  const pickMethod = pick;
-  const quantity = Number(quan);
-
-  const memberArray = membs.split(", ");
+const randomizer = (pickMethod, quantity, members) => {
+  
+  quantity = parseInt(quantity);
+  const memberArray = members.split(", ");
 
   const shuffle = array => {
     let elementsRemaining = array.length,
