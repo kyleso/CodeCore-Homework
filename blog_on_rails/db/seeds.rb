@@ -12,7 +12,7 @@ Post.destroy_all
 
   created_at = Faker::Date.backward(365 * 2)
   Post.create(
-    title: Faker::Hacker.say_something_smart,
+    title: Faker::Book.title,
     body: Faker::ChuckNorris.fact,
     created_at: created_at,
     updated_at: created_at
