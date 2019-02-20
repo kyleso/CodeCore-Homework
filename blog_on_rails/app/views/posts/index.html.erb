@@ -1,12 +1,11 @@
-<div class="container-fluid">
+<div class="container-fluid index-box">
 <div class="row">
-<% for post in @posts do  %>
-  <div class="col-lg-4 col-md-6 col-sm-12">
+<% @posts.each do |post| %>
+  <div class="card-deck col-lg-4 col-md-6 col-sm-12">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><%= post.title %></h5>
-        <p class="card-text"><%= post.body %>% </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title text-primary"><%= link_to post.title, post_path(post.id) %></h5>
+        <p class="card-text"><%= post.body %></p>
       </div>
     </div>
   </div>

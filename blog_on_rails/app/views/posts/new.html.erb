@@ -1,1 +1,32 @@
-<h1>I'm the NEW POST PAGE</h1>
+
+<div class="container">
+<div class="form-align">
+<%= form_with(model: @post, local: true) do |form| %>
+
+<div class="form-spacer">
+  <div>
+    <% if @post.errors.present? %>
+      <p>
+        <%= @post.errors.full_messages.join(', ') %>
+      </p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :title %> <br>
+    <%= form.text_field :title, :size=>"85" %>
+  </div>
+
+  <div>
+    <%= form.label :body %> <br>
+    <%= form.text_area :body, :size=>"85", cols: 60, rows: 5 %>
+  </div>
+  <div>
+    <input type="submit" class="btn btn-outline-primary" value="Create Post">
+  </div>
+</div>
+  
+
+<% end %>
+</div>
+</div>

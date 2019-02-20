@@ -3,3 +3,38 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.index-box {
+  margin-top: 2em;
+}
+
+.card-deck .card {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+.form-align {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2em;
+}
+
+.form-spacer div {
+  margin: 1em;
+}
+
+.col div {
+  margin: 0.5em;
+}
+
+.buttons-box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.buttons-box .btn {
+  margin-right: 0.5em
+}

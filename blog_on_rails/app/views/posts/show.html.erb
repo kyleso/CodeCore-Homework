@@ -1,2 +1,22 @@
-<h1>I'm the SHOW POST PAGE</h1>
+<div class="container">
+  <div class="h-100 row align-items-center">
+    <div class="col form-align w-50" style="">
+      <div>
+        <h1> <%= @post.title %> </h1>
+      </div>
+      <div>
+        <p> <%= @post.body %> </p>
+      </div>
+      <div>
+        <small>
+          Posted <%= time_ago_in_words(@post.created_at) %> ago
+        </small>
+      </div>
+      <div class="buttons-box">
+        <%= link_to "Edit", edit_post_path(@post.id), :class => "btn btn-outline-primary" %>
+        <%= link_to "Delete", post_path(@post.id), method: :delete, :class => "btn btn-outline-primary", data: { confirm: "Are you sure you want to delete this post?" } %>
+      </div>
+    </div>
+  </div>
+</div>
 
