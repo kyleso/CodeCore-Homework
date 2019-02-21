@@ -1,6 +1,6 @@
 <div class="container">
   <div class="h-100 row align-items-center">
-    <div class="col form-align w-50" style="">
+    <div class="col form-align w-50">
       <div>
         <h1> <%= @post.title %> </h1>
       </div>
@@ -16,6 +16,58 @@
         <%= link_to "Edit", edit_post_path(@post.id), :class => "btn btn-outline-primary" %>
         <%= link_to "Delete", post_path(@post.id), method: :delete, :class => "btn btn-outline-primary", data: { confirm: "Are you sure you want to delete this post?" } %>
       </div>
+      <section>
+        <div class="comment-box">
+          <h4>Comment</h4>
+
+          <%= form_with(model: [@post, @new_comment], local: true) do |form| %>
+            <% if @new_comment.errors.present? %>
+              <p>
+                <%= @new_comment.errors.full_messages.join(', ') %>
+              </p>
+            <% end %>
+
+            <div class="form_group" style="">
+              <%= form.text_area(
+                :body,
+                cols: 50,
+                rows: 4,
+                placeholder: "What's on your mind?",
+                class: "form-control"
+              ) %> 
+            </div>
+            <div class="comment-button">
+              <%= form.submit "Submit", class: "btn btn-outline-primary" %>
+            </div>
+          <% end %>
+
+          <ul class="comment-list">
+            <% @comments.each do |comment| %>
+              <li>
+                <p>
+                  <%= comment.body %> <br>
+                  <small>
+                    Commented <%= time_ago_in_words(comment.created_at) %> ago
+                  </small>
+                  •
+                  <small>
+                    <%=
+                      link_to(
+                        "Delete",
+                        post_comment_path(@post, comment),
+                        method: :delete,
+                        data: {
+                          confirm: "Are you sure?"
+                        }
+                      )
+                    %>
+                  </small>
+                </p>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </section>
     </div>
   </div>
 </div>
