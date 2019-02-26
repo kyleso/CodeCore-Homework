@@ -45,6 +45,7 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.4.7)
       execjs
+    bcrypt (3.1.12)
     bindex (0.5.0)
     bootsnap (1.4.0)
       msgpack (~> 1.0)
@@ -54,6 +55,7 @@ GEM
       sassc-rails (>= 2.0.0)
     builder (3.2.3)
     byebug (11.0.0)
+    cancancan (2.3.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
@@ -190,9 +192,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   byebug
+  cancancan
   faker
   hirb
   jbuilder (~> 2.5)
