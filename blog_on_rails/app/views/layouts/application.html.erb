@@ -12,14 +12,15 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand text-primary" href="/">Blog On Rails</a>
+        <%= link_to "Blog On Rails", root_path, class: "navbar-brand text-primary" %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="nav-container">
-              <a class="nav-item nav-link active form-inline" href="/">Home <span class="sr-only">(current)</span></a>
-              <a class="nav-item nav-link form-inline" href="/posts/new">New Post</a>
+              <a class="nav-item nav-link form-inline" href="/">Home <span class="sr-only">(current)</span></a>
+              <%= link_to "New Post", new_post_path, class: "nav-item nav-link form-inline" %> 
+              <%= link_to "Sign Up", new_user_path, class: "nav-item nav-link form-inline" %>
           </div>
         </div>
       </nav>

@@ -37,7 +37,7 @@ users = User.all
   if p.valid?
     p.comments = rand(0..25).times.map do
       Comment.new(
-        body: Faker::GreekPhilosophers.quote
+        body: Faker::GreekPhilosophers.quote,
         created_at: created_at,
         updated_at: created_at,
         user: users.sample
