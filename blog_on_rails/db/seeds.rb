@@ -12,7 +12,7 @@ Post.destroy_all
 User.destroy_all
 
 50.times do
-  name = Faker::Name.name
+  name = Faker::Name.unique.name
   email = Faker::Internet.email
   User.create(
     name: name,
