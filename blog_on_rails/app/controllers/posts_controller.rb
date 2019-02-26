@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+  before_action :authenticated_user!, except: [:index, :show]
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new post_params
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post.id)
     else
