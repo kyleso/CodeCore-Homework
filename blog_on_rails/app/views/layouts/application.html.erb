@@ -18,12 +18,23 @@
           </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="nav-container">
-              <a class="nav-item nav-link form-inline" href="/">Home <span class="sr-only">(current)</span></a>
-              <%= link_to "New Post", new_post_path, class: "nav-item nav-link form-inline" %> 
-              <%= link_to "Sign Up", new_user_path, class: "nav-item nav-link form-inline" %>
+              <%= link_to "Home", root_path, class: "nav-item nav-link form-inline" %>
+              <%= link_to "New Post", new_post_path, class: "nav-item nav-link form-inline" %>
+              <% if user_signed_in? %>
+                <span class="form-inline">Hello, <%= current_user.name %></span>
+                <%= link_to "Sign Out", session_path, method: :delete, data: { confirm: "Are You Sure You Want to Sign Out?" }, class: "nav-item nav-link form-inline" %>
+              <% else %>
+                <%= link_to "Sign In", new_session_path, class: "nav-item nav-link form-inline" %> 
+                <%= link_to "Sign Up", new_user_path, class: "nav-item nav-link form-inline" %>
+              <% end %>
           </div>
         </div>
       </nav>
+      <% flash.each do |type, message| %>
+        <div class="flash flash-<%= type %>">
+          <%= message %>
+        </div>
+      <% end %>
     </header>
 
     <main>
