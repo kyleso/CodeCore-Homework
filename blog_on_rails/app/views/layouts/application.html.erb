@@ -32,8 +32,11 @@
       </nav>
       <div class="alert-box card">
         <% flash.each do |type, message| %>
-          <div class="text-danger flash flash-<%= type %>">
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
             <%= message %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         <% end %>
       </div>
