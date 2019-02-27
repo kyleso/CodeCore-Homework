@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update user_params
-      flash[:alert] = "Info Updated"
+      flash[:alert] = "Personal Info Updated!"
       redirect_to root_path
     else
       render :edit
@@ -63,6 +63,6 @@ class UsersController < ApplicationController
   end
 
   def authorize_user!
-    redirect_to root_path, alert: "Access Denied" unless can? :update, @user
+    redirect_to root_path, alert: "Access Denied: You Can Only Edit Your Own Info!" unless can? :update, @user
   end
 end

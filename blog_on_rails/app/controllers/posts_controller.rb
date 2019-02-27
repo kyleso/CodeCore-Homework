@@ -53,6 +53,6 @@ class PostsController < ApplicationController
   end
 
   def authorize_user!
-    redirect_to root_path, alert: "Access Denied: Please Sign In or Sign Up" unless can? :crud, @post
+    redirect_to root_path, alert: "Access Denied: That Post Isn't Yours!" unless can? :crud, @post
   end
 end

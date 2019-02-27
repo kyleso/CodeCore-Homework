@@ -30,11 +30,13 @@
           </div>
         </div>
       </nav>
-      <% flash.each do |type, message| %>
-        <div class="flash flash-<%= type %>">
-          <%= message %>
-        </div>
-      <% end %>
+      <div class="alert-box card">
+        <% flash.each do |type, message| %>
+          <div class="text-danger flash flash-<%= type %>">
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
     </header>
 
     <main>
