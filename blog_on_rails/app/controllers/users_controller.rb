@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def pwupdate
-    if current_user and current_user.authenticate(params[:current_password])
+    if current_user&.authenticate(params[:current_password])
       if params[:new_password] != params[:current_password] && params[:new_password] == params[:new_password_confirmation]
         @user.password = params[:new_password]
         @user.save
