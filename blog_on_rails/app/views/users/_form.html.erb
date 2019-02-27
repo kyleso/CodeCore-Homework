@@ -1,10 +1,4 @@
-<div class="container">
-  <div class="form-align">
-    <div class="form-group">
-      <h4>Sign Up</h4>
-    </div>
-    
-    <%= form_with model: @user, local: true do |f| %>
+<%= form_with model: @user, local: true do |f| %>
 
       <div class="form-group">
         <% if @user.errors.any? %>
@@ -35,9 +29,7 @@
       </div>
 
       <div class="form-group">
-        <%= f.submit "Sign Up", class: "btn btn-outline-primary" %>
+        <%= f.submit "Submit", class: "btn btn-outline-primary" %>
       </div>
 
     <% end %>
-  </div>
-</div>
