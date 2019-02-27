@@ -21,7 +21,7 @@
               <%= link_to "Home", root_path, class: "nav-item nav-link form-inline" %>
               <%= link_to "New Post", new_post_path, class: "nav-item nav-link form-inline" %>
               <% if user_signed_in? %>
-                <span class="navspan"> Hello,&nbsp <%= link_to "#{current_user.name}", edit_user_path(current_user.id) %></span>
+                <span class="navspan"> You are signed in as&nbsp <%= link_to "#{current_user.name}", edit_user_path(current_user.id) %></span>
                 <%= link_to "Sign Out", session_path, method: :delete, data: { confirm: "Are You Sure You Want to Sign Out?" }, class: "nav-item nav-link form-inline" %>
               <% else %>
                 <%= link_to "Sign In", new_session_path, class: "nav-item nav-link form-inline" %> 
