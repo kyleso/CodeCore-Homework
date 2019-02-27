@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticated_user!, only: [:edit, :update, :pwedit, :pwupdate]
+  before_action :find_user, only: [:edit, :update, :pwedit, :pwupdate]
+  before_action :authorize_user!, only: [:edit, :update, :pwedit, :pwupdate]
 
   def new
     @user = User.new
@@ -9,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
+      flash[:alert] = "Signed Up Successfully!"
       redirect_to root_path
     else
       render :new
@@ -16,12 +19,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update user_params
+      flash[:alert] = "Info Updated"
       redirect_to root_path
     else
       render :edit
@@ -29,13 +31,9 @@ class UsersController < ApplicationController
   end
 
   def pwedit
-    @user = User.find(params[:id])
-
-    # render json: @user
   end
 
   def pwupdate
-    @user = User.find(params[:id])
     if current_user and current_user.authenticate(params[:current_password])
       if params[:new_password] != params[:current_password] && params[:new_password] == params[:new_password_confirmation]
         @user.password = params[:new_password]
@@ -60,9 +58,11 @@ class UsersController < ApplicationController
     )
   end
 
-  # def user_pw_params
-  #   params.require(:user).permit(
-  #     :current_password, :new_password, :new_password_confirmation
-  #   )
-  # end
+  def find_user
+    @user = User.find(params[:id])
+  end
+
+  def authorize_user!
+    redirect_to root_path, alert: "Access Denied" unless can? :update, @user
+  end
 end
