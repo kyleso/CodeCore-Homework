@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
-      flash[:alert] = "Signed Up Successfully!"
+      flash[:success] = "Signed Up Successfully!"
       redirect_to root_path
     else
       render :new
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update user_params
-      flash[:alert] = "Personal Info Updated!"
+      flash[:success] = "Personal Info Updated!"
       redirect_to root_path
     else
       render :edit
@@ -38,14 +38,14 @@ class UsersController < ApplicationController
       if params[:new_password] != params[:current_password] && params[:new_password] == params[:new_password_confirmation]
         @user.password = params[:new_password]
         @user.save
-        flash[:alert] = "Password Changed Successfully"
+        flash[:success] = "Password Changed Successfully"
         redirect_to root_path
       else
-        flash[:alert] = "You Entered Something Incorrectly"
+        flash[:warning] = "You Entered Something Incorrectly"
         render :pwedit
       end
     else
-      flash[:alert] = "Current Password is Incorrect"
+      flash[:warning] = "Current Password is Incorrect"
       render :pwedit
     end
   end

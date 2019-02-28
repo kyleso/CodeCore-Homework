@@ -9,7 +9,7 @@
       </div>
       <div>
         <small>
-          Posted by <%= @post.user&.name || "--deleted--" %>
+          Posted by <span class="text-primary"><%= @post.user&.name || "--deleted--" %></span>
           <%= time_ago_in_words(@post.created_at) %> ago
         </small>
       </div>
@@ -50,7 +50,7 @@
                 <p>
                   <%= comment.body %> <br>
                   <small>
-                    Commented by <%= comment.user&.name || "--deleted--" %>  
+                    Commented by <span class="text-primary"><%= comment.user&.name || "--deleted--" %></span>  
                     <%= time_ago_in_words(comment.created_at) %> ago
                   </small>
                   •

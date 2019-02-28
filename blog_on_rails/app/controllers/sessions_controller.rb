@@ -8,12 +8,13 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:notice] = "You Are Now Logged In"
       if session[:return_to].present?
-        redirect_to session.delete(:return_to), notice: "Logged In Successfully"
+        redirect_to session.delete(:return_to)
+        flash[:notice] = "Logged In Successfully"
       else
         redirect_to root_path
       end
     else
-      flash[:alert] = "Wrong Email or Password"
+      flash[:warning] = "Wrong Email or Password"
       render :new
     end
   end

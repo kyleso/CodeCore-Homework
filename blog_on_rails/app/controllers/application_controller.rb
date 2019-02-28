@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
+
   private
 
   def current_user
@@ -18,7 +20,7 @@ class ApplicationController < ActionController::Base
   def authenticated_user!
     unless user_signed_in?
       session[:return_to] ||= request.url
-      flash[:alert] = "You Must Sign In or Sign Up First"
+      flash[:warning] = "You Must Sign In or Sign Up First"
       redirect_to root_path
     end
   end
