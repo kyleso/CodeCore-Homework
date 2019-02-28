@@ -1,0 +1,64 @@
+
+<%- include('../partials/header') %>
+<div class="post-cards">
+  <div class="card mb-4">
+    <div class="card-body">
+      <h1><%= cohort.name %></h1>
+      <p><%= cohort.members %></p>
+        <div class="button-container">
+          <a class="btn btn-success" role="button" href="/cohorts/<%= cohort.id %>/edit">Edit</a>
+          <form method="POST" action="/cohorts/<%= cohort.id %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" class="btn btn-danger" value="Delete">
+          </form>
+        </div>
+        <div class="show-card">
+        <form>
+          <div class="form-spacing">
+            <h4>Method</h4>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="pickMethod" id="teamCount" value="teamCount" <% if (formData.pickMethod == "teamCount"){ %> checked="checked" <% } %> >
+                <input type="hidden" name="members" value="<%= cohort.members %>">
+                <label class="form-check-label" for="teamCount">
+                  Team Count
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="pickMethod" id="numberPerTeam" value="numberPerTeam" <% if (formData.pickMethod == "numberPerTeam"){ %> checked="checked" <% } %> >
+                  <label class="form-check-label" for="numberPerTeam">
+                    Number Per Team
+                  </label>
+              </div> 
+          </div>
+          <div class="form-spacing">
+            <h4>Quantity</h4>
+              <input type="text" class="form-control" name="quantity" value=<%= formData.quantity || '' %>>
+          </div>
+          <div class="big-button">
+            <input type="submit" class="btn btn-outline-primary" value="Assign Teams">
+          </div> 
+        </form>
+        </div>
+        <% if ( Object.keys(formData).length > 0) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Members</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < randoArr.length; i++) { %>
+              <tr>  
+                <th scope="row"> <%= i + 1 %> </th>
+                <td> <%= randoArr[i].join(", ") %> </td>
+              </tr>  
+              <% }
+            %>
+          </tbody>
+        </table>
+        <% } %>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>
