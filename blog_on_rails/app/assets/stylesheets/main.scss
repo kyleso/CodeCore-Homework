@@ -1,0 +1,84 @@
+.nav-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.index-box {
+  margin-top: 2em;
+}
+
+.card-deck .card {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+.form-align {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2em;
+}
+
+.form-spacer div {
+  margin: 1em;
+}
+
+.col div {
+  margin: 0.5em;
+}
+
+.buttons-box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.buttons-box .btn {
+  margin-right: 0.5em
+}
+
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+ul.comment-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.comment-button {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  margin-left: -5em;
+}
+
+.form_group .form-control {
+  margin-left: -0.5em;
+}
+
+.comment-button .btn {
+  margin-top: 0.4em;
+  margin-bottom: 1em;
+  margin-left: -0.5em;
+}
+
+.navspan {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.alert-box {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.btn-spacer {
+  margin-top: 0.4em;
+}
