@@ -34,18 +34,18 @@ class UsersController < ApplicationController
   end
 
   def pwupdate
-    if current_user&.authenticate(params[:current_password])
-      if params[:new_password] != params[:current_password] && params[:new_password] == params[:new_password_confirmation]
-        @user.password = params[:new_password]
+    if current_user&.authenticate(password_change_params[:current_password])
+      if password_change_params[:new_password] != password_change_params[:current_password] && password_change_params[:new_password] == password_change_params[:new_password_confirmation]
+        @user.password = password_change_params[:new_password]
         @user.save
-        flash[:success] = "Password Changed Successfully"
+        flash[:success] = "Password Changed Successfully!"
         redirect_to root_path
       else
-        flash[:warning] = "You Entered Something Incorrectly"
+        flash[:warning] = "Your New Password and Confirmation Don't Match!"
         render :pwedit
       end
     else
-      flash[:warning] = "Current Password is Incorrect"
+      flash[:warning] = "Current Password is Incorrect!"
       render :pwedit
     end
   end
@@ -64,5 +64,9 @@ class UsersController < ApplicationController
 
   def authorize_user!
     redirect_to root_path, alert: "Access Denied: You Can Only Edit Your Own Info!" unless can? :update, @user
+  end
+
+  def password_change_params
+    params.permit(:current_password, :new_password, :new_password_confirmation)
   end
 end
