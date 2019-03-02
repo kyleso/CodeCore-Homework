@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       flash[:success] = "Signed Up Successfully!"
       redirect_to root_path
     else
+      flash[:warning] = "You Entered Something Incorrectly"
       render :new
     end
   end
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
         flash[:success] = "Password Changed Successfully!"
         redirect_to root_path
       else
-        flash[:warning] = "Your New Password and Confirmation Don't Match!"
+        flash[:warning] = "Your New Password and Password Confirmation Don't Match!"
         render :pwedit
       end
     else
