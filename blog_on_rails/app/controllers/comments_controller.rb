@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find params[:id]
     if can? :destroy, @comment
       @comment.destroy
+      flash[:success] = "Comment Deleted!"
       redirect_to post_url(@comment.post)
     else
       flash[:alert] = "Access Denied: That Comment Isn't Yours!"
