@@ -1,15 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Hangman</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="main.js"></script>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Hangman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      
+      <div class="navbar"></div>
+      
+      <div class="title"><h1>My Hangman Game</h1></div>
+      
+      <div class="game-area">
+
+        <section class="gallows">
+          <div class="gallows-image">
+            <img src="./images/gallows.jpg" alt="">
+          </div>
+        </section>
+
+        <section class="alphabet-keys">
+          <table class="alpha-table">
+            <tr class="alpha-row alpha-row-1">
+              <td><button id="letter-A" class="alpha-btn">A</button></td>
+              <td><button id="letter-B" class="alpha-btn">B</button></td>
+              <td><button id="letter-C" class="alpha-btn">C</button></td>
+              <td><button id="letter-D" class="alpha-btn">D</button></td>
+              <td><button id="letter-E" class="alpha-btn">E</button></td>
+              <td><button id="letter-F" class="alpha-btn">F</button></td>
+              <td><button id="letter-G" class="alpha-btn">G</button></td>
+              <td><button id="letter-H" class="alpha-btn">H</button></td>
+              <td><button id="letter-I" class="alpha-btn">I</button></td>
+              <td><button id="letter-J" class="alpha-btn">J</button></td>
+            </tr>
+            <tr class="alpha-row alpha-row-2">
+              <td><button id="letter-K" class="alpha-btn">K</button></td>
+              <td><button id="letter-L" class="alpha-btn">L</button></td>
+              <td><button id="letter-M" class="alpha-btn">M</button></td>
+              <td><button id="letter-N" class="alpha-btn">N</button></td>
+              <td><button id="letter-O" class="alpha-btn">O</button></td>
+              <td><button id="letter-P" class="alpha-btn">P</button></td>
+              <td><button id="letter-Q" class="alpha-btn">Q</button></td>
+              <td><button id="letter-R" class="alpha-btn">R</button></td>
+              <td><button id="letter-S" class="alpha-btn">S</button></td>
+              <td><button id="letter-T" class="alpha-btn">T</button></td>
+            </tr>
+            <tr class="alpha-row alpha-row-3">
+              <td><button id="letter-U" class="alpha-btn">U</button></td>
+              <td><button id="letter-V" class="alpha-btn">V</button></td>
+              <td><button id="letter-W" class="alpha-btn">W</button></td>
+              <td><button id="letter-X class="alpha-btn">X</button></td>
+              <td><button id="letter-Y" class="alpha-btn">Y</button></td>
+              <td><button id="letter-Z" class="alpha-btn">Z</button></td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="guess-area"></section>
+
+      </div>
+    </div>
+  </body>
 </html>
