@@ -10,22 +10,18 @@
     <script src="main.js"></script>
   </head>
   <body>
-    <div class="container">
-      
-      <div class="navbar"></div>
-      
-      <div class="title"><h1>My Hangman Game</h1></div>
-      
+    <div class="container">  
       <div class="game-area">
-
+        
         <section class="gallows">
           <div class="gallows-image">
-            <img src="./images/gallows.jpg" alt="">
+            <img class="img" src="./images/gallows.jpg" alt="">
           </div>
         </section>
 
-        <section class="alphabet-keys">
+        <section class="alpha-container">
           <table class="alpha-table">
+            <tbody>
             <tr class="alpha-row alpha-row-1">
               <td><button id="letter-A" class="alpha-btn">A</button></td>
               <td><button id="letter-B" class="alpha-btn">B</button></td>
@@ -54,10 +50,11 @@
               <td><button id="letter-U" class="alpha-btn">U</button></td>
               <td><button id="letter-V" class="alpha-btn">V</button></td>
               <td><button id="letter-W" class="alpha-btn">W</button></td>
-              <td><button id="letter-X class="alpha-btn">X</button></td>
+              <td><button id="letter-X" class="alpha-btn">X</button></td>
               <td><button id="letter-Y" class="alpha-btn">Y</button></td>
               <td><button id="letter-Z" class="alpha-btn">Z</button></td>
             </tr>
+          </tbody>
           </table>
         </section>
 
