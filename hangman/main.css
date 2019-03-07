@@ -97,13 +97,12 @@ table {
 .play-again-btn {
   font-size: 1rem;
   padding: 10px;
-  border: 2px solid #ff5900;
-  color: #ff5900;
+  background-color: #ff5900;
+  color: white;
   border-radius: 7px;
 }
 
 .play-again-btn:hover {
-  background-color: #ff5900;
-  color: white;
+  background-color: #cf4900;
   transition: all 0.2s ease-in-out;
 }
