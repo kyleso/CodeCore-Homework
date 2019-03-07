@@ -2,6 +2,7 @@ const animals = [
   "aardvark",
   "albatross",
   "alligator",
+  "anteater",
   "antelope",
   "badger",
   "bandicoot",
@@ -126,7 +127,6 @@ const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
 const animalLetters = randomAnimal.split("");
 
 $(document).ready(() => {
-
   // Create divs equal to the length of the random animal word that can have the correct
   // letter appended to them
   for (let i = 0; i < animalLetters.length; i++) {
@@ -138,48 +138,61 @@ $(document).ready(() => {
   let correctCount = 0;
   let wrongCount = 0;
   let imageCounter = 1;
-  
+
   $(".alpha-btn").on("click", event => {
     $(event.currentTarget).attr("disabled", true);
 
     // Check if guess is correct
-    
+
     for (let i = 0; i < animalLetters.length; i++) {
-      if (animalLetters[i] === $(event.currentTarget).text().toLowerCase()) {
-        $(event.currentTarget).removeClass('in-play');
+      if (
+        animalLetters[i] ===
+        $(event.currentTarget)
+          .text()
+          .toLowerCase()
+      ) {
+        $(event.currentTarget).removeClass("in-play");
         $(event.currentTarget).addClass("correct");
-        $(".guess-line").eq(i)[0].innerText = `${animalLetters[i].toUpperCase()}`;   
-        correctCount += 1; 
-      }   
-    };
+        $(".guess-line").eq(i)[0].innerText = `${animalLetters[i].toUpperCase()}`;
+        correctCount += 1;
+      }
+    }
 
     // Check if guess is wrong
-    if (!animalLetters.includes($(event.currentTarget).text().toLowerCase())) {
-      $(event.currentTarget).removeClass('in-play');
+    if (
+      !animalLetters.includes(
+        $(event.currentTarget)
+          .text()
+          .toLowerCase()
+      )
+    ) {
+      $(event.currentTarget).removeClass("in-play");
       $(event.currentTarget).addClass("incorrect");
       wrongCount += 1;
       imageCounter += 1;
-      $('.img').attr('src', `./images/0${imageCounter}-gallows.jpg`);
+      $(".img").attr("src", `./images/0${imageCounter}-gallows.jpg`);
     }
 
     // End Game Conditions
     if (wrongCount === 6) {
-      $('.end-status').append(`<h3>YOU LOSE!  Secret word: ${randomAnimal}</h3>`);
+      $(".end-status").append(
+        `<h3>YOU LOSE!  Secret word: ${randomAnimal}</h3>`
+      );
       gameFinished();
     }
     if (correctCount === animalLetters.length) {
-      $('.end-status').append('<h2>YOU WIN!</h2>');
+      $(".end-status").append("<h2>YOU WIN!</h2>");
       gameFinished();
     }
 
     // Game-end function
     function gameFinished() {
-      $('.category').remove();
-      $('.alpha-btn').attr('disabled', true);
-      $('.alpha-btn').removeClass('in-play');
-      $('.end-status').append('<button class="play-again-btn" onClick="window.location.reload()">Play Again?</button>')
+      $(".category").remove();
+      $(".alpha-btn").attr("disabled", true);
+      $(".alpha-btn").removeClass("in-play");
+      $(".end-status").append(
+        '<button class="play-again-btn" onClick="window.location.reload()">Play Again?</button>'
+      );
     }
   });
 });
-
-
