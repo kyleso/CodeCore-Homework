@@ -176,7 +176,7 @@ $(document).ready(() => {
     // End Game Conditions
     if (wrongCount === 6) {
       $(".end-status").append(
-        `<h3>YOU LOSE!  Secret word: ${randomAnimal}</h3>`
+        `<h3>YOU LOSE!  The secret word is:  ${randomAnimal}</h3>`
       );
       gameFinished();
     }
