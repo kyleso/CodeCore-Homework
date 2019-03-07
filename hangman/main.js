@@ -68,22 +68,29 @@ $(document).ready(() => {
   }
 
   let correctCount = 0;
-  // while (correctCount < animalLetters.length) {
-    
-  // }
+  let wrongCount = 0;
+  
   $(".alpha-btn").on("click", event => {
     $(event.currentTarget).addClass("clicked");
     $(event.currentTarget).attr("disabled", true);
     // guessedLetters.push($(event.currentTarget).text())
 
     const indicesOfLetter = [];
-    
+    if (correctCount < animalLetters.length && wrongCount < 6) {
     for (let i = 0; i < animalLetters.length; i++) {
       if (animalLetters[i] === $(event.currentTarget).text().toLowerCase()) {
         indicesOfLetter.push(i);
         $(".guess-line").eq(i)[0].innerText = `${animalLetters[i].toUpperCase()}`;   
         correctCount += 1; 
-      }    
+      }   
     };
+    if (!animalLetters.includes($(event.currentTarget).text().toLowerCase())) {
+      wrongCount += 1;
+    }
+    console.log(`correctCount is: ${correctCount}`);
+    console.log(`wrongCount is: ${wrongCount}`);
+  } 
+    
+    
   });
 });
