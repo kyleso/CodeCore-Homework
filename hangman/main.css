@@ -49,14 +49,20 @@ html * {
   border-radius: 15%;
 }
 
-.alpha-btn:hover {
+.in-play:hover {
   background-color: #ff5900;
+  color: white;
+  transform: scale(1.2);
+  transition: all .2s ease-in-out;
+}
+
+.correct {
+  background-color: rgb(35, 212, 0);
   color: white;
 }
 
-.clicked {
-  background-color: #ff5900;
-  color: white;
+.incorrect {
+  background-color: darkgray;
 }
 
 .guess-area {
@@ -76,4 +82,24 @@ html * {
   margin: 0.5em;
   padding-top: 20px;
   font-size: 1.5rem;
+}
+
+.end-status {
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
+
+.play-again-btn {
+  font-size: 1rem;
+  padding: 10px;
+  border: 2px solid #ff5900;
+  color: #ff5900;
+  border-radius: 7px;
+}
+
+.play-again-btn:hover {
+  background-color: #ff5900;
+  color: white;
+  transition: all .2s ease-in-out;
 }
