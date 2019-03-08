@@ -127,9 +127,13 @@ const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
 const animalLetters = randomAnimal.split("");
 
 $(document).ready(() => {
+  console.log(animalLetters);
   let correctCount = 0;
   let wrongCount = 0;
   let gameOver = false;
+  const winSound = new Audio('./sounds/win.wav');
+  const loseSound = new Audio('./sounds/lose.wav');
+
   // Create divs equal to the length of the random animal word that can have the correct
   // letter appended to them
   for (let i = 0; i < animalLetters.length; i++) {
@@ -149,20 +153,25 @@ $(document).ready(() => {
     gameOver = true;
   }
 
+  // End Game Condition check
   function gameEndChecker() {
-    // End Game Conditions
     if (wrongCount === 6) {
       $(".end-status").append(
         `<h3>YOU LOSE!  The secret word is:  ${randomAnimal}</h3>`
       );
       gameFinished();
+      loseSound.play();
+      // alert(`YOU LOSE!  The secret word is:  ${randomAnimal}`)
     }
     if (correctCount === animalLetters.length) {
       $(".end-status").append("<h2>YOU WIN!</h2>");
       gameFinished();
+      winSound.play();
+      // alert(`YOU WIN!`)
     }
   }
 
+  // Check user's input
   function guessChecker(inputValue) {
     // Check if guess is correct
     for (let i = 0; i < animalLetters.length; i++) {
@@ -184,9 +193,11 @@ $(document).ready(() => {
   }
 
   $(".alpha-btn").on("click", event => {
-    $(event.currentTarget).attr("disabled", true);
-    guessChecker($(event.currentTarget).text());
-    gameEndChecker();
+    if (!gameOver) {
+      $(event.currentTarget).attr("disabled", true);
+      guessChecker($(event.currentTarget).text());
+      gameEndChecker();
+    }
   });
 
   $(document).on("keydown", event => {
