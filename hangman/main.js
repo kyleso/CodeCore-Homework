@@ -127,7 +127,9 @@ const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
 const animalLetters = randomAnimal.split("");
 
 $(document).ready(() => {
-
+  let correctCount = 0;
+  let wrongCount = 0;
+  let gameOver = false;
   // Create divs equal to the length of the random animal word that can have the correct
   // letter appended to them
   for (let i = 0; i < animalLetters.length; i++) {
@@ -144,6 +146,7 @@ $(document).ready(() => {
     $(".end-status").append(
       '<button class="play-again-btn" onClick="window.location.reload()">Play Again?</button>'
     );
+    gameOver = true;
   }
 
   function gameEndChecker() {
@@ -163,27 +166,16 @@ $(document).ready(() => {
   function guessChecker(inputValue) {
     // Check if guess is correct
     for (let i = 0; i < animalLetters.length; i++) {
-      if (
-        animalLetters[i] ===
-        (inputValue)
-          .toLowerCase()
-      ) {
+      if (animalLetters[i] === inputValue.toLowerCase()) {
         $(`#letter-${inputValue}`).removeClass("in-play");
         $(`#letter-${inputValue}`).addClass("correct");
-        $(".guess-line").eq(i)[0].innerText = `${animalLetters[
-          i
-        ].toUpperCase()}`;
+        $(".guess-line").eq(i)[0].innerText = `${animalLetters[i].toUpperCase()}`;
         correctCount += 1;
       }
     }
 
     // Check if guess is wrong
-    if (
-      !animalLetters.includes(
-        (inputValue)
-          .toLowerCase()
-      )
-    ) {
+    if (!animalLetters.includes(inputValue.toLowerCase())) {
       $(`#letter-${inputValue}`).removeClass("in-play");
       $(`#letter-${inputValue}`).addClass("incorrect");
       wrongCount += 1;
@@ -191,20 +183,17 @@ $(document).ready(() => {
     }
   }
 
-  let correctCount = 0;
-  let wrongCount = 0;
-
   $(".alpha-btn").on("click", event => {
     $(event.currentTarget).attr("disabled", true);
-
-      guessChecker($(event.currentTarget).text());
-      gameEndChecker();
+    guessChecker($(event.currentTarget).text());
+    gameEndChecker();
   });
 
-  $(document).on('keydown', event => {
-    $(`#letter-${event.key.toUpperCase()}`)
-    
-    guessChecker(event.key.toUpperCase());
-    gameEndChecker();
+  $(document).on("keydown", event => {
+    if (!gameOver) {
+      $(`#letter-${event.key.toUpperCase()}`);
+      guessChecker(event.key.toUpperCase());
+      gameEndChecker();
+    }
   });
 });
