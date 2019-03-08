@@ -127,6 +127,7 @@ const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
 const animalLetters = randomAnimal.split("");
 
 $(document).ready(() => {
+
   // Create divs equal to the length of the random animal word that can have the correct
   // letter appended to them
   for (let i = 0; i < animalLetters.length; i++) {
@@ -135,44 +136,17 @@ $(document).ready(() => {
     );
   }
 
-  let correctCount = 0;
-  let wrongCount = 0;
-  let imageCounter = 1;
+  // Game-end function
+  function gameFinished() {
+    $(".category").remove();
+    $(".alpha-btn").attr("disabled", true);
+    $(".alpha-btn").removeClass("in-play");
+    $(".end-status").append(
+      '<button class="play-again-btn" onClick="window.location.reload()">Play Again?</button>'
+    );
+  }
 
-  $(".alpha-btn").on("click", event => {
-    $(event.currentTarget).attr("disabled", true);
-
-    // Check if guess is correct
-
-    for (let i = 0; i < animalLetters.length; i++) {
-      if (
-        animalLetters[i] ===
-        $(event.currentTarget)
-          .text()
-          .toLowerCase()
-      ) {
-        $(event.currentTarget).removeClass("in-play");
-        $(event.currentTarget).addClass("correct");
-        $(".guess-line").eq(i)[0].innerText = `${animalLetters[i].toUpperCase()}`;
-        correctCount += 1;
-      }
-    }
-
-    // Check if guess is wrong
-    if (
-      !animalLetters.includes(
-        $(event.currentTarget)
-          .text()
-          .toLowerCase()
-      )
-    ) {
-      $(event.currentTarget).removeClass("in-play");
-      $(event.currentTarget).addClass("incorrect");
-      wrongCount += 1;
-      imageCounter += 1;
-      $(".img").attr("src", `./images/0${imageCounter}-gallows.jpg`);
-    }
-
+  function gameEndChecker() {
     // End Game Conditions
     if (wrongCount === 6) {
       $(".end-status").append(
@@ -184,15 +158,53 @@ $(document).ready(() => {
       $(".end-status").append("<h2>YOU WIN!</h2>");
       gameFinished();
     }
+  }
 
-    // Game-end function
-    function gameFinished() {
-      $(".category").remove();
-      $(".alpha-btn").attr("disabled", true);
-      $(".alpha-btn").removeClass("in-play");
-      $(".end-status").append(
-        '<button class="play-again-btn" onClick="window.location.reload()">Play Again?</button>'
-      );
+  function guessChecker(inputValue) {
+    // Check if guess is correct
+    for (let i = 0; i < animalLetters.length; i++) {
+      if (
+        animalLetters[i] ===
+        (inputValue)
+          .toLowerCase()
+      ) {
+        $(`#letter-${inputValue}`).removeClass("in-play");
+        $(`#letter-${inputValue}`).addClass("correct");
+        $(".guess-line").eq(i)[0].innerText = `${animalLetters[
+          i
+        ].toUpperCase()}`;
+        correctCount += 1;
+      }
     }
+
+    // Check if guess is wrong
+    if (
+      !animalLetters.includes(
+        (inputValue)
+          .toLowerCase()
+      )
+    ) {
+      $(`#letter-${inputValue}`).removeClass("in-play");
+      $(`#letter-${inputValue}`).addClass("incorrect");
+      wrongCount += 1;
+      $(".img").attr("src", `./images/0${wrongCount}-gallows.jpg`);
+    }
+  }
+
+  let correctCount = 0;
+  let wrongCount = 0;
+
+  $(".alpha-btn").on("click", event => {
+    $(event.currentTarget).attr("disabled", true);
+
+      guessChecker($(event.currentTarget).text());
+      gameEndChecker();
+  });
+
+  $(document).on('keydown', event => {
+    $(`#letter-${event.key.toUpperCase()}`)
+    
+    guessChecker(event.key.toUpperCase());
+    gameEndChecker();
   });
 });
