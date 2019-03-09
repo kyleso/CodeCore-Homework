@@ -148,7 +148,7 @@ $(document).ready(() => {
     $(".alpha-btn").attr("disabled", true);
     $(".alpha-btn").removeClass("in-play");
     $(".end-status").append(
-      '<button class="play-again-btn" onClick="window.location.reload()">Play Again?</button>'
+      '<button class="play-again-btn" onClick="window.location.reload()">click here or hit ENTER to play again</button>'
     );
     gameOver = true;
   }
@@ -201,10 +201,19 @@ $(document).ready(() => {
   });
 
   $(document).on("keydown", event => {
+    const {key} = event;
+    console.log(key)
     if (!gameOver) {
-      $(`#letter-${event.key.toUpperCase()}`);
-      guessChecker(event.key.toUpperCase());
-      gameEndChecker();
+      if (/[a-zA-Z]/.test(key)) {
+        $(`#letter-${key.toUpperCase()}`);
+        guessChecker(key.toUpperCase());
+        gameEndChecker();
+      }
+    }
+    if (gameOver) {
+      if (key === "Enter") {
+        location.reload();
+      }
     }
   });
 });
