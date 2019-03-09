@@ -131,8 +131,10 @@ $(document).ready(() => {
   let correctCount = 0;
   let wrongCount = 0;
   let gameOver = false;
-  const winSound = new Audio('./sounds/win.wav');
-  const loseSound = new Audio('./sounds/lose.wav');
+  const keysPressed = [];
+
+  const winSound = new Audio("./sounds/win.wav");
+  const loseSound = new Audio("./sounds/lose.wav");
 
   // Create divs equal to the length of the random animal word that can have the correct
   // letter appended to them
@@ -201,13 +203,15 @@ $(document).ready(() => {
   });
 
   $(document).on("keydown", event => {
-    const {key} = event;
-    console.log(key)
-    if (!gameOver) {
-      if (/[a-zA-Z]/.test(key)) {
-        $(`#letter-${key.toUpperCase()}`);
-        guessChecker(key.toUpperCase());
-        gameEndChecker();
+    const { key } = event;
+    if (!keysPressed.includes(key)) {
+      if (!gameOver) {
+        if (/[a-zA-Z]/.test(key)) {
+          keysPressed.push(key);
+          $(`#letter-${key.toUpperCase()}`).attr("disabled", true);
+          guessChecker(key.toUpperCase());
+          gameEndChecker();
+        }
       }
     }
     if (gameOver) {
