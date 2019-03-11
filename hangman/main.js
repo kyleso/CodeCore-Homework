@@ -121,13 +121,12 @@ const animals = [
   "zebra"
 ];
 
-// Choose random animal from array of animals
-const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
-// Split random animal word into array
-const animalLetters = randomAnimal.split("");
-
 $(document).ready(() => {
-  console.log(animalLetters);
+  // Choose random animal from array of animals
+  const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
+  // Split random animal word into array
+  const animalLetters = randomAnimal.split("");
+
   let correctCount = 0;
   let wrongCount = 0;
   let gameOver = false;
@@ -157,7 +156,7 @@ $(document).ready(() => {
 
   // End Game Condition check
   function gameEndChecker() {
-    if (wrongCount === 6) {
+    if (wrongCount >= 6) {
       $(".end-status").append(
         `<h3>YOU LOSE!  The secret word is:  ${randomAnimal}</h3>`
       );
@@ -165,7 +164,7 @@ $(document).ready(() => {
       loseSound.play();
       // alert(`YOU LOSE!  The secret word is:  ${randomAnimal}`)
     }
-    if (correctCount === animalLetters.length) {
+    if (correctCount >= animalLetters.length) {
       $(".end-status").append("<h2>YOU WIN!</h2>");
       gameFinished();
       winSound.play();
@@ -180,7 +179,9 @@ $(document).ready(() => {
       if (animalLetters[i] === inputValue.toLowerCase()) {
         $(`#letter-${inputValue}`).removeClass("in-play");
         $(`#letter-${inputValue}`).addClass("correct");
-        $(".guess-line").eq(i)[0].innerText = `${animalLetters[i].toUpperCase()}`;
+        $(".guess-line").eq(i)[0].innerText = `${animalLetters[
+          i
+        ].toUpperCase()}`;
         correctCount += 1;
       }
     }
